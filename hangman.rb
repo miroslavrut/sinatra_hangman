@@ -5,7 +5,7 @@ enable :sessions
 
 
 get '/' do
-  redirect '/newgame' if session[:secret_word].nil? || game_over? 
+  redirect '/newgame' if session[:secret_word].nil? || game_over?
   @secret_word = session[:secret_word]
   @display = session[:display]
   @missed_letters = session[:missed_letters]
@@ -16,6 +16,14 @@ end
 get '/newgame' do
   set_session_variables
   redirect '/'
+end
+
+get '/win' do
+  erb :win
+end
+
+get '/loose' do
+  erb :loose
 end
 
 post '/' do
@@ -69,10 +77,17 @@ helpers do
   end
 
   def game_won?
-    session[:secret_word] == session[:display].join
+    if session[:secret_word] == session[:display].join
+      redirect '/win'
+      return true
+    end
   end
 
   def out_of_turns?
-    session[:turns] == 0
+    if session[:turns] == 0
+      redirect '/loose'
+      return true
+    end
   end
 end
+
