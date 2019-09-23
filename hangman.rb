@@ -56,6 +56,8 @@ helpers do
   end
 
   def valid_input?(letter)
-    letter.match?(/[a-z]/) && letter.length == 1
+    letter.match?(/[a-z]/) && 
+      letter.length == 1 && 
+        !session[:missed_letters].include?(letter)
   end
 end
