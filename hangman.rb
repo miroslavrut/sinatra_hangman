@@ -43,7 +43,7 @@ helpers do
   end
 
   def check_guess(letter)
-    return if session[:missed_letters].include?(letter)
+    return if !valid_input?(letter)
     if session[:secret_word].include?(letter)
       session[:display].each_with_index do |l,i|
         if letter == session[:secret_word][i]
@@ -53,5 +53,9 @@ helpers do
     else
       session[:missed_letters] << letter
     end
+  end
+
+  def valid_input?(letter)
+    letter.match?(/[a-z]/) && letter.length == 1
   end
 end
