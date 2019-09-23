@@ -17,7 +17,7 @@ get '/newgame' do
 end
 
 post '/' do
-  # check_guess(params["guess"].downcase)
+  check_guess(params["guess"].downcase)
   redirect '/'
 end
 
@@ -42,4 +42,16 @@ helpers do
     words
   end
 
+  def check_guess(letter)
+    return if session[:missed_letters].include?(letter)
+    if session[:secret_word].include?(letter)
+      session[:display].each_with_index do |l,i|
+        if letter == session[:secret_word][i]
+          session[:display][i] = letter
+        end
+      end
+    else
+      session[:missed_letters] << letter
+    end
+  end
 end
