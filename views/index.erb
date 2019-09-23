@@ -1,8 +1,15 @@
 <h1>Hangman</h1>
 <p>
-  
+  <% if @secret_word%>
+  <%= @secret_word %>
+  <% end%>
 </p>
-
-<form method="POST">
-  <input type="text" autofocus>
+<%if @display%>
+<%= @display.join(" ")%>
+<%end%>
+<form action="/" method="POST">
+  <input type="text" autofocus name="guess" title="Pick single letter">
 </form>
+<%if @missed_letters%>
+  <%= @missed_letters%>
+<%end%>
