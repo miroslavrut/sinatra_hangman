@@ -5,7 +5,7 @@ enable :sessions
 
 
 get '/' do
-  redirect '/newgame' if game_over?
+  redirect '/newgame' if session[:secret_word].nil? || game_over? 
   @secret_word = session[:secret_word]
   @display = session[:display]
   @missed_letters = session[:missed_letters]
