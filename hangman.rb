@@ -5,9 +5,11 @@ enable :sessions
 
 
 get '/' do
+  redirect '/newgame' if game_over?
   @secret_word = session[:secret_word]
   @display = session[:display]
   @missed_letters = session[:missed_letters]
+  @turns = session[:turns]
   erb :index
 end
 
@@ -52,6 +54,7 @@ helpers do
       end
     else
       session[:missed_letters] << letter
+      session[:turns] -= 1;
     end
   end
 
@@ -59,5 +62,17 @@ helpers do
     letter.match?(/[a-z]/) && 
       letter.length == 1 && 
         !session[:missed_letters].include?(letter)
+  end
+
+  def game_over?
+    game_won? || out_of_turns?
+  end
+
+  def game_won?
+    session[:secret_word] == session[:display].join
+  end
+
+  def out_of_turns?
+    session[:turns] == 0
   end
 end

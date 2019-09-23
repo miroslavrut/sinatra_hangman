@@ -11,5 +11,6 @@
   <input type="text" autofocus name="guess" title="Pick single letter">
 </form>
 <%if @missed_letters%>
+  <%= "Turns remaining: #{@turns}"%>
   <%= @missed_letters%>
 <%end%>
