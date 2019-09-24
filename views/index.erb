@@ -1,16 +1,27 @@
-<h1>Hangman</h1>
+<header>
+  <h1>Hangman</h1>
+</header>
 <p>
-  <% if @secret_word%>
+  <% if @secret_word %>
   <%= @secret_word %>
-  <% end%>
+  <% end %>
 </p>
-<%if @display%>
-<%= @display.join(" ")%>
-<%end%>
-<form action="/" method="POST">
-  <input type="text" autofocus name="guess" title="Pick single letter">
-</form>
-<%if @missed_letters%>
-  <%= "Turns remaining: #{@turns}"%>
-  <%= @missed_letters%>
-<%end%>
+
+<div class="display">
+  <% if @display %>
+    <%= @display.join(" ") %>
+  <% end %>
+</div>
+
+<div class="input">
+  <form action="/" method="POST">
+    <input type="text" autofocus name="guess" autocomplete="off" title="Pick single letter" size="1">
+  </form>
+</div>
+
+<div class="info">
+  <p><%= "Turns remaining: #{@turns}"%></p>
+  <%if @missed_letters%>
+    <p><%= "Missed guesses: #{@missed_letters}"%></p>
+  <%end%>
+</div>
