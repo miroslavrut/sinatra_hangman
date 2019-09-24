@@ -2,4 +2,36 @@
   margin: 0;
   padding: 0;
   font-family: 'Nosifer', cursive;
+  color:#ad2118;
+}
+
+body {
+  background-color:#1f1914;
+  text-align: center;
+}
+
+header {
+  font-size: 2vw;
+}
+
+.display {
+  font-size: 2rem;
+}
+
+.info {
+  margin-top: 2%;
+}
+
+input[type=text] {
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  width: 50px;
+  border-radius: 9px;
+  border:none;
+  text-align: center;
+  background-color: #40352b;
+}
+
+input[type=text]:focus {
+  outline: none;
 }

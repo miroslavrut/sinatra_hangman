@@ -62,7 +62,7 @@ helpers do
       end
     else
       session[:missed_letters] << letter
-      session[:turns] -= 1;
+      session[:turns] -= 1
     end
   end
 
